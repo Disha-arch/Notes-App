@@ -47,3 +47,14 @@ export const deleteNote = async (req,res)=>{
         res.status(500).json({message:"Internal server error",error});
     }
 }
+
+export const getNoteById = async (req,res) => {
+    try {
+        const note = await Note.findById(req.params.id);
+        if(!note) return res.status(404).json({message:"Note not found !"});
+        res.status(200).json(note);
+    } catch (error) {
+        console.error("Error in getNoteById controller",error);
+        res.status(500).json({message:"Internl server error",error});
+    }
+}
