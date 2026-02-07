@@ -2,7 +2,7 @@ import Note from "../models/Note.js"
 
 export const getNotes = async (req,res)=>{
     try {
-        const note = await Note.find();
+        const note = await Note.find().sort({createdAt : -1}); // sort functionality here brings the newest added notes at the top 
         res.status(200).json(note);
     } catch (error) {
         console.error("Error in getNotes controller", error)
