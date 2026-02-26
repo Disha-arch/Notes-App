@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors"
 import notesRoutes from "./routes/notesRoute.js";
 import { connectDB } from "./config/db.js";
 import dotenv from "dotenv";
@@ -9,12 +10,17 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+app.use(cors({
+    origin: "http://localhost:5173",
+}))
+
 //middleware
 app.use(express.json()); // to parse the incoming JSON data and access it in the req.body object.
 app.use(rateLimiter);
 
 
-app.use("/api/notes" , notesRoutes);
+
+app.use("/api/notes" ,  notesRoutes);
 
 // this means that first database will be connected and then only server will listen
 connectDB().then(()=>{
