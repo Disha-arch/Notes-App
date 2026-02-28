@@ -30,7 +30,14 @@ const CreatePage = () => {
             navigate("/")
         } catch (error) {
             console.log("error craeting note",error);
-            toast.error("Failed to create note");
+            if(error.response.satus === 429){
+                toast.error("Slow down ! You're creating notes too fast.",{
+                    duration: 4000
+                })
+            }
+            else{
+                toast.error("Failed to create note");
+            }
         } finally{
             setLoading(true);
         }
