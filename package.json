@@ -4,9 +4,13 @@
   "description": "A full-stack Notes Management Application built using the MERN stack (MongoDB, Express, React, Node.js). This application allows users to create, read, update, and delete notes with a modern UI and a secure backend that includes rate limiting and database integration.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm install --prefix backend && npm install --prefix frontend/notes-app-react && npm run build --prefix frontend/notes-app-react",
+    "start": "npm run start --prefix backend"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.22.1"
+  }
 }
