@@ -2,13 +2,21 @@ import React from "react";
 import { useState } from "react";
 import {Link} from "react-router-dom";
 import {ArrowLeftIcon} from "lucide-react";
+import toast from "react-hot-toast";
 
 const CreatePage = () => {
     const[title , setTitle] = useState("");
     const[content , setContent] = useState("");
     const[loading , setLoading] = useState(false);
 
-    const handleSubmit = () => {}
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        
+        if(!title.trim() || !content.trim()){
+            toast.error("All fields are required !");
+            return;
+        }
+    }
 
     return(
         <div className="min-h-screen bg-base-200">
