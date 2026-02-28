@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {ArrowLeftIcon} from "lucide-react";
 import toast from "react-hot-toast";
 
@@ -9,12 +9,29 @@ const CreatePage = () => {
     const[content , setContent] = useState("");
     const[loading , setLoading] = useState(false);
 
-    const handleSubmit = (e) => {
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         
         if(!title.trim() || !content.trim()){
             toast.error("All fields are required !");
             return;
+        }
+
+        setLoading(true);
+        try {
+            await axios.post("http://localhost:5000/api/notes",{
+                title,
+                content
+            })
+            toast.success("Note Created Successfully !!");
+            navigate("/")
+        } catch (error) {
+            console.log("error craeting note",error);
+            toast.error("Failed to create note");
+        } finally{
+            setLoading(true);
         }
     }
 
