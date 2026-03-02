@@ -2,6 +2,8 @@
 
 A full-stack Notes Management Application built using the MERN stack (MongoDB, Express, React, Node.js). This application allows users to create, read, update, and delete notes with a modern UI and a secure backend that includes rate limiting and database integration.
 
+Access it using : https://notes-app-rewu.onrender.com/
+
 ---
 
 # 🚀 Features
